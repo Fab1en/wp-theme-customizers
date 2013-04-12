@@ -1,4 +1,10 @@
 <?php
+
+include_once('customizer/sections-register.php');
+include_once('customizer/functions.php');
+include_once('customizer/register.php');
+include_once('customizer/styles.php');
+
 // head cleanup
 remove_action('wp_head', 'feed_links_extra');
 remove_action('wp_head', 'rsd_link');
@@ -15,6 +21,7 @@ remove_action('wp_head', 'noindex');
 add_action('after_setup_theme', 'artsite_theme_features');
 function artsite_theme_features(){
     add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'custom-background', array('wp-head-callback' => '__return_false') );
 }
 
 add_action('wp_head', 'artsite_head', 0);

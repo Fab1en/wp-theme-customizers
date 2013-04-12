@@ -6,11 +6,12 @@
     <head>
         <?php wp_head(); ?>
     </head>
-    <body>
+    <body <?php body_class() ?>>
         <?php get_header() ?>
 
-        <!-- Add your site or application content here -->
-        <p><?php _e('Hello world! This is HTML5 Boilerplate.', 'artsite') ?></p>
+        <div id="wrap" style="min-height:400px;margin:50px;">
+            Artsite
+        </div>
 
         <?php get_footer() ?>
         <?php wp_footer(); ?>
