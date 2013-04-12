@@ -27,14 +27,36 @@ jQuery(function($){
         $(this).css('cursor', 'default');
     }).mousemove(function(e){
         if(move) {
+            var $this = $(this);
+            
+            // store the background-position as a global variable
+            window.background_position = (e.clientX + initPos.x) + 'px ' + (e.clientY + initPos.y) + 'px';
             
             // live update of the background-position
-            var $this = $(this);
             $this.css({
                 cursor: 'move',
-                'background-position': (e.clientX + initPos.x) + 'px ' + (e.clientY + initPos.y) + 'px'
+                'background-position': window.background_position
             });
+            
         }
     });
+    
+    
+    // WP theme customizer magic
+	wp.customize( 'artsite_background_color', function( value ) {
+		value.bind( function( newval ) {
+			$('body, #wrap').css('background-color', newval );
+		} );
+	} );
+	wp.customize( 'background_image', function( value ) {
+		value.bind( function( newval ) {
+			$('#wrap').css('background-image', newval );
+		} );
+	} );
+	wp.customize( 'background_repeat', function( value ) {
+		value.bind( function( newval ) {
+			$('#wrap').css('background-repeat', newval );
+		} );
+	} );
 
 });

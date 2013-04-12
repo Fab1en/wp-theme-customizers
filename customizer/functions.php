@@ -16,18 +16,24 @@ function artsite_background_customizer( $wp_customize ){
       'slug' => 'artsite_background_color',
       'default' => $background_color
     );
+  $settings[] = array(
+      'slug' => 'artsite_background_position',
+      'default' => '0px 0px'
+    );
 
   foreach( $settings as $setting ){
     $wp_customize->add_setting( $setting['slug'], array(
         'default' => $setting['default'],
         'type' => 'theme_mod',
-        'capability' => 'edit_theme_options'
+        'capability' => 'edit_theme_options',
+        'transport' => 'postMessage'
       )
     );
   }
 
   // Remove the default "background" control
   $wp_customize->remove_control( 'background_color' );
+  $wp_customize->remove_control( 'background_position_x' );
 
   /*
    * Color Controls
